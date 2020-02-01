@@ -1,4 +1,4 @@
-package com.example.demo;
+package de.wingo.kkb;
 
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 @RestController
-public class DemoApplication {
+public class SpringBootWebApplication {
 
 	@GetMapping("/")
 	String home() {
@@ -14,6 +14,6 @@ public class DemoApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(SpringBootWebApplication.class, args);
 	}
 }
