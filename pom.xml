@@ -23,6 +23,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>11</java.version>
+		<openapi-generator-maven-plugin.version>4.2.0</openapi-generator-maven-plugin.version>
+		<jackson-databind-nullable.version>0.2.0</jackson-databind-nullable.version>
+		<spring-boot.version>2.1.10.RELEASE</spring-boot.version>
 	</properties>
 
 	<dependencies>
@@ -40,6 +43,18 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>${jackson-databind-nullable.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -47,6 +62,42 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot.version}</version>
+			</plugin>
+			<plugin>
+				<!-- Plugin that provides API-first development using openapi-generator 
+					to generate Spring-MVC endpoint stubs at compile time from an OpenAPI definition 
+					file -->
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<!-- Plugin that provides API-first development using openapi-generator 
+					to generate Spring-MVC endpoint stubs at compile time from an OpenAPI definition 
+					file -->
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>${openapi-generator-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/swagger/api.yml</inputSpec>
+							<generatorName>spring</generatorName>
+							<apiPackage>de.wg.ccp.web.api</apiPackage>
+							<modelPackage>de.wg.ccp.web.api.model</modelPackage>
+							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+							<importMappings>Problem=org.zalando.problem.Problem</importMappings>
+							<skipValidateSpec>false</skipValidateSpec>
+							<configOptions>
+								<delegatePattern>true</delegatePattern>
+								<title>ccp-data</title>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

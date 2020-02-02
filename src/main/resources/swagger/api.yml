@@ -1,0 +1,125 @@
+openapi: "3.0.0"
+info:
+  description: "Codegen for demo service"
+  version: "0.0.1"
+  title: "KKB Service Specification"
+  contact:
+    email: "antonie.zafirov@north-47.com"
+tags:
+  - name: "kkb"
+    description: Kreditkartenportal"
+servers:
+  - url: http://localhost:8000/
+    description: "local host"
+paths:
+  /card/{cardId}:
+    get:
+      tags:
+        - "card"
+      summary: "Retrieves Card by ID"
+      operationId: "getCardById"
+      parameters:
+        - name: "cardId"
+          in: "path"
+          description: "retrieves card by card id"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        200:
+          description: "Retrieves family members by person id"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/Card'
+  /card/{cardCode}:
+    get:
+      tags:
+        - "card"
+      summary: "Retrieves Card by code"
+      operationId: "getCardByCode"
+      parameters:
+        - name: "cardCode"
+          in: "path"
+          description: "retrieves card by card id"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        200:
+          description: "Retrieves family members by person id"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/Card'
+  /address/{addressId}:
+    get:
+      tags:
+        - "address"
+      summary: "Retrieves Address by ID"
+      operationId: "getAddressById"
+      parameters:
+        - name: "addressId"
+          in: "path"
+          description: "retrieves address by card id"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        200:
+          description: "Retrieves family members by person id"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                $ref: '#/components/schemas/Address'
+components:
+  schemas:
+    Card:
+      type: "object"
+      required:
+        - "cardId"
+      properties:
+        cardId:
+          type: "integer"
+          format: "int64"
+        cardCode:
+          type: "string"
+          example: "4451654377652210"
+        addressId:
+          type: "integer"
+          format: "int64"
+        cardBalance:
+          type: "number"
+          example: "1288.15"
+    Address:
+      type: "object"
+      required:
+        - "addressId"
+      properties:
+        addressId:
+          type: "integer"
+          format: "int64"
+        firstName:
+          type: "string"
+          example: "Esther"
+        surName:
+          type: "string"
+          example: "Miller"
+        street:
+          type: "string"
+          example: "riverside"
+        streetNumber:
+          type: "string"
+          example: "17a"
+        city:
+          type: "string"
+          example: "Boston"
+        postCode:
+          type: "string"
+          example: "116-227-22"
+          
