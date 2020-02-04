@@ -1,14 +1,8 @@
-image: maven:latest
-
 stages:
   - build
-
-build:
+test_job:
   stage: build
   script:
-    - mvn test-compile compile
-  tags:
-    - mytag
-  only:
-    refs:
-      - dev
+    - pwd
+    - mvn clean
+    - mvn compile
