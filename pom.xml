@@ -86,8 +86,8 @@
 						<configuration>
 							<inputSpec>${project.basedir}/src/main/resources/swagger/api.yml</inputSpec>
 							<generatorName>spring</generatorName>
-							<apiPackage>de.wg.ccp.web.api</apiPackage>
-							<modelPackage>de.wg.ccp.web.api.model</modelPackage>
+							<apiPackage>de.wingo.kkb.web.api</apiPackage>
+							<modelPackage>de.wingo.kkb.web.api.model</modelPackage>
 							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
 							<importMappings>Problem=org.zalando.problem.Problem</importMappings>
 							<skipValidateSpec>false</skipValidateSpec>
