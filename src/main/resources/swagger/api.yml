@@ -7,12 +7,26 @@ info:
     email: "antonie.zafirov@north-47.com"
 tags:
   - name: "kkb"
-    description: Kreditkartenportal"
+    description: "Kreditkartenportal"
 servers:
-  - url: http://localhost:8000/
+  - url: http://localhost:8080/
     description: "local host"
 paths:
-  /card/{cardId}:
+  /login:
+    post:
+      summary: "User login"
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Login sussessful
+        '401':
+          description: "Unauthorized"
     get:
       tags:
         - "card"
@@ -79,6 +93,20 @@ paths:
                 $ref: '#/components/schemas/Address'
 components:
   schemas:
+    User:
+      type: "object"
+      required:
+        - "userId"
+      properties:
+        cardId:
+          type: "integer"
+          format: "int64"
+        userName:
+          type: "string"
+          example: "KwatschUp123"
+        Password:
+          type: "string"
+          example: "KwatschUp123"
     Card:
       type: "object"
       required:
