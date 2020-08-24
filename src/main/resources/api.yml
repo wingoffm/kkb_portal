@@ -21,7 +21,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/LoginUser'
       responses:
         '200':
           description: Login sussessful
@@ -93,12 +93,10 @@ paths:
                 $ref: '#/components/schemas/Address'
 components:
   schemas:
-    User:
+    LoginUser:
       type: "object"
-      required:
-        - "userId"
       properties:
-        cardId:
+        userId:
           type: "integer"
           format: "int64"
         userName:
